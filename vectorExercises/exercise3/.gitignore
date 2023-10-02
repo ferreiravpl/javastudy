@@ -27,3 +27,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/.idea/.gitignore
+/exercise3.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
