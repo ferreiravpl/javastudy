@@ -11,15 +11,12 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         Locale.setDefault(Locale.US);
 
-        //Criando array de quartos totais
-        double[] rentableRooms = new double[9];
-
         //Criando array de quartos que serão alugados
+        Renter[] rentedRooms = new Renter[10];
         System.out.print("How many roms will be rented? ");
         int roomsToRent = sc.nextInt();
-        Renter[] rentedRooms = new Renter[roomsToRent];
 
-        for (int i = 0; i < rentedRooms.length; i++) {
+        for (int i = 0; i <= roomsToRent; i++) {
             System.out.println("Rent #" + (i + 1) + ":");
             sc.nextLine();
             System.out.print("Name: ");
@@ -28,7 +25,8 @@ public class Program {
             String renterEmail = sc.nextLine();
             System.out.print("Room: ");
             int roomNumber = sc.nextInt();
-            rentedRooms[i] = new Renter(renterName, renterEmail, roomNumber);
+            rentedRooms[roomNumber] = new Renter(renterName, renterEmail, roomNumber);
+            System.out.println();
         }
 
         //Validação de quais quartos estão alugados em ordem crescente
@@ -39,9 +37,6 @@ public class Program {
             if (rentedRooms[i] != null) {
                 System.out.println(rentedRooms[i].getRoomNumber() + ": " + rentedRooms[i].getName() + ", " + rentedRooms[i].getEmail());
                 busyRooms++;
-            }
-            else {
-                System.out.println("No rented rooms.");
             }
         }
 
