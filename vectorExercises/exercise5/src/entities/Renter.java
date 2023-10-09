@@ -6,17 +6,18 @@ public class Renter {
     String email;
     int roomNumber;
 
+    public Renter (String name, String email, int roomNumber) {
+        this.name = name;
+        this.email = email;
+        this.roomNumber = roomNumber;
+    }
+
     public int getRoomNumber() {
         return roomNumber;
     }
 
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
-    }
-
-    public Renter (String name, String email) {
-        this.name = name;
-        this.email = email;
     }
 
     public String getName() {
