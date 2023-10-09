@@ -16,7 +16,7 @@ public class Program {
         System.out.print("How many roms will be rented? ");
         int roomsToRent = sc.nextInt();
 
-        for (int i = 0; i <= roomsToRent; i++) {
+        for (int i = 0; i < roomsToRent; i++) {
             System.out.println("Rent #" + (i + 1) + ":");
             sc.nextLine();
             System.out.print("Name: ");
