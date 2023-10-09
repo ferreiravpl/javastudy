@@ -4,6 +4,15 @@ public class Renter {
 
     String name;
     String email;
+    int roomNumber;
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 
     public Renter (String name, String email) {
         this.name = name;
