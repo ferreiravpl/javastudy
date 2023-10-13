@@ -12,7 +12,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -44,6 +44,6 @@ public class Employee {
     public String toString() {
         return id + ", " +
                 name + ", " +
-                salary;
+                String.format("%.2f", salary);
     }
 }
