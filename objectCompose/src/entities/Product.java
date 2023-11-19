@@ -9,7 +9,7 @@ public class Product {
 
     }
 
-    public Product (String name, Double price) {
+    public Product (String name, Double price, OrderItem item) {
         this.name = name;
         this.price = price;
     }
