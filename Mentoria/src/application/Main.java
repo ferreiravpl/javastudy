@@ -14,6 +14,7 @@ public class Main {
 
         Transactions tc = new Transactions();
         MoneyChangeCalculator mcc = new MoneyChangeCalculator();
+        mcc.setNoteList();
 
         System.out.print("Qual o valor da sua conta? ");
         Double cost = sc.nextDouble();
@@ -23,7 +24,10 @@ public class Main {
         Double paidAmount = sc.nextDouble();
         tc.setPaidAmount(paidAmount);
 
-        System.out.println("O troco é: " + mcc.calculateMoneyChange());
+        System.out.println("O troco é: " + mcc.calculateTotalMoneyChange());
+
+        System.out.println("As notas disponíveis para troco são: " + mcc.returnNoteList());
+        System.out.println(mcc.returnTotalNoteChange());
 
         sc.close();
     }
