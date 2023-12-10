@@ -30,11 +30,9 @@ public class MoneyChangeCalculator extends Transactions {
     }
 
     //Método para calcular o troco em cédulas
-
     public double returnTotalNoteChange () {
-        for (int i = 0; i < noteList.size(); i++) {
-            noteList.get(i);
-            returnTotalNoteChange = calculateTotalMoneyChange() / i;
+        for (Object note : noteList) {
+            returnTotalNoteChange = calculateTotalMoneyChange() / noteList.indexOf(note);
             if (returnTotalNoteChange != 0) {
                 System.out.println(returnTotalNoteChange);
             } else {
