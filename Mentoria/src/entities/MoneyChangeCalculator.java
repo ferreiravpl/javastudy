@@ -7,7 +7,7 @@ public class MoneyChangeCalculator extends Transactions {
 
     double returnTotalNoteChange;
 
-    List noteList = new ArrayList();
+    List<Double> noteList = new ArrayList();
 
     //Método para inserir as cédulas na lista
     public void setNoteList() {
@@ -29,10 +29,15 @@ public class MoneyChangeCalculator extends Transactions {
         return noteList;
     }
 
+    //Desordenar lista chumbada e ordenar em um próprio método
+    //Ajustar variável returnTotalNoteChange pq tá pegando sempre o troco total e não o resto das próximas divisões;
+    //Criar validação pra que somente aceite o pagamento caso seja maior que o custo
+    //Validar utilização de hash
+
     //Método para calcular o troco em cédulas
     public double returnTotalNoteChange () {
-        for (Object note : noteList) {
-            returnTotalNoteChange = calculateTotalMoneyChange() / noteList.indexOf(note);
+        for (int i = 0; i < noteList.size(); i++) {
+            returnTotalNoteChange = calculateTotalMoneyChange() / noteList.get(i);
             if (returnTotalNoteChange != 0) {
                 System.out.println(returnTotalNoteChange);
             } else {
