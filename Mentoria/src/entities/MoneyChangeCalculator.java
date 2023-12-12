@@ -41,15 +41,15 @@ public class MoneyChangeCalculator extends Transactions {
         returnTotalNoteChange = calculateTotalMoneyChange();
         for (int i = 0; i < noteList.size(); i++) {
             Double validateCalculateTotalMoneyChange = calculateTotalMoneyChange();
-            if (validateCalculateTotalMoneyChange == 0) {
-                break;
+                if (validateCalculateTotalMoneyChange == 0) {
+                    break;
             }
             Double newValueNoteChange = returnTotalNoteChange / noteList.get(i);
             Integer noteQuantityPerValue = (int) Math.floor(newValueNoteChange);
-            if (noteQuantityPerValue > 0) {
-                Double alreadyPaidAmount = noteQuantityPerValue * noteList.get(i);
-                returnTotalNoteChange -= alreadyPaidAmount;
-                System.out.println("O seu troco contém " + noteQuantityPerValue + " notas de " + noteList.get(i));
+                if (noteQuantityPerValue > 0) {
+                    Double alreadyPaidAmount = noteQuantityPerValue * noteList.get(i);
+                    returnTotalNoteChange -= alreadyPaidAmount;
+                    System.out.println("O seu troco contém " + noteQuantityPerValue + " notas de " + noteList.get(i));
             }
         }
         return 0.0;
