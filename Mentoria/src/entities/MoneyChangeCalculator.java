@@ -1,27 +1,29 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MoneyChangeCalculator extends Transactions {
 
-    double returnTotalNoteChange;
+    Double returnTotalNoteChange;
 
-    List noteList = new ArrayList();
+    List<Double> noteList = new ArrayList();
 
     //Método para inserir as cédulas na lista
     public void setNoteList() {
-        noteList.add(100.0);
-        noteList.add(50.0);
-        noteList.add(25.0);
         noteList.add(10.0);
+        noteList.add(200.0);
         noteList.add(5.0);
+        noteList.add(0.10);
+        noteList.add(50.0);
+        noteList.add(100.0);
         noteList.add(2.0);
+        noteList.add(0.05);
         noteList.add(1.0);
         noteList.add(0.50);
+        noteList.add(20.0);
         noteList.add(0.25);
-        noteList.add(0.10);
-        noteList.add(0.05);
     }
 
     //Método para consultar a lista
@@ -29,22 +31,37 @@ public class MoneyChangeCalculator extends Transactions {
         return noteList;
     }
 
+    //Ajustar variável returnTotalNoteChange pq tá pegando sempre o troco total e não o resto das próximas divisões;
+    //Criar nova variável pra armazenar o resto das divisões (validar se faz sentido criar um método pra incrementar ela ou se no próprio for);
+
+
     //Método para calcular o troco em cédulas
     public double returnTotalNoteChange () {
-        for (Object note : noteList) {
-            returnTotalNoteChange = calculateTotalMoneyChange() / noteList.indexOf(note);
-            if (returnTotalNoteChange != 0) {
-                System.out.println(returnTotalNoteChange);
-            } else {
-                System.out.println("O troco está completo");
+        Collections.sort(noteList, Collections.reverseOrder());
+        returnTotalNoteChange = calculateTotalMoneyChange();
+        for (int i = 0; i < noteList.size(); i++) {
+            Double validateCalculateTotalMoneyChange = calculateTotalMoneyChange();
+            if (validateCalculateTotalMoneyChange == 0) {
+                break;
+            }
+            Double newValueNoteChange = returnTotalNoteChange / noteList.get(i);
+            Integer noteQuantityPerValue = (int) Math.floor(newValueNoteChange);
+            if (noteQuantityPerValue > 0) {
+                Double alreadyPaidAmount = noteQuantityPerValue * noteList.get(i);
+                returnTotalNoteChange -= alreadyPaidAmount;
+                System.out.println("O seu troco contém " + noteQuantityPerValue + " notas de " + noteList.get(i));
             }
         }
-        return returnTotalNoteChange;
+        return 0.0;
     }
 
     //Calculando o valor total do troco (sem separação por cédulas)
-    public Double calculateTotalMoneyChange () {
-        return Transactions.getPaidAmount() - Transactions.getCost();
+    public Double calculateTotalMoneyChange() {
+        if (Transactions.getPaidAmount() < Transactions.getCost()) {
+            System.out.println("Dinheiro insuficiente!");
+        } else {
+            return Transactions.getPaidAmount() - Transactions.getCost();
+        }
+        return 0.0;
     }
-
 }
