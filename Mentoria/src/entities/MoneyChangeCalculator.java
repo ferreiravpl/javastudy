@@ -6,9 +6,8 @@ import java.util.List;
 
 public class MoneyChangeCalculator extends Transactions {
 
-    Double returnTotalNoteChange = calculateTotalMoneyChange();
+    Double returnTotalNoteChange;
     Double newValueNoteChange;
-    Integer eachValueNoteQuantity = (int) Math.floor(returnTotalNoteChange);
 
     List<Double> noteList = new ArrayList();
 
@@ -46,11 +45,13 @@ public class MoneyChangeCalculator extends Transactions {
             if (validateCalculateTotalMoneyChange == 0) {
                 break;
             }
-            newValueNoteChange = returnTotalNoteChange / noteList.get(i); //pega o valor inicial e divide pelo elemento do seu i;
-            double pegaResto = calculateTotalMoneyChange() % noteList.get(i); //resto da divisao.
-            if (eachValueNoteQuantity > 0) { //A cedula cabe no valor do troco.
+            returnTotalNoteChange = calculateTotalMoneyChange();
+            newValueNoteChange = returnTotalNoteChange / noteList.get(i); //Armazena o valor inicial do returnTotalNoteChange dividido pelo valor do index
+            double pegaResto = calculateTotalMoneyChange() % noteList.get(i); //Armazena o resto da divisão na variável pegaResto
+            Integer eachValueNoteQuantity = (int) Math.floor(returnTotalNoteChange);
+            if (eachValueNoteQuantity > 0) { //Valida se a cédula cabe no valor do troco
                 double teste = eachValueNoteQuantity * noteList.get(i); //devo diminuir o valor, pela quantidade que me retornou de inteiro * pelo valor da cedula (calcula a qtd de notas de x valor).
-                returnTotalNoteChange--;//precisa tirar o valor que deu na variavel teste, e atualizar o returnTotalNoteChange para que na proxima iteração o valor que a variavel novoValor receba seja o troco atualizado, ou seja, diminuindo 100 reais, por exemplo.
+//                returnTotalNoteChange--;//precisa tirar o valor que deu na variavel teste, e atualizar o returnTotalNoteChange para que na proxima iteração o valor que a variavel novoValor receba seja o troco atualizado, ou seja, diminuindo 100 reais, por exemplo.
             }
             System.out.println("LINHA PARA TESTE E VER SE ISSO ME AJUDA EM ALGO, PFVR ME AJUDA JESUS> " + "resto: " + pegaResto + " primeiro int: " + eachValueNoteQuantity);
             if (returnTotalNoteChange != 0) {
@@ -59,7 +60,7 @@ public class MoneyChangeCalculator extends Transactions {
                 System.out.println("O troco está completo");
             }
         }
-        return returnTotalNoteChange;
+        return 0.0;
     }
 
     //Calculando o valor total do troco (sem separação por cédulas)
