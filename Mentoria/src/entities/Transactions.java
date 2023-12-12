@@ -1,8 +1,8 @@
 package entities;
 public class Transactions {
 
-    protected static Double cost;
-    protected static Double paidAmount;
+    private static Double cost;
+    private static Double paidAmount;
 
     public Transactions() {
 
