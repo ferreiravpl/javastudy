@@ -24,7 +24,11 @@ public class Main {
         Double paidAmount = sc.nextDouble();
         tc.setPaidAmount(paidAmount);
 
-        System.out.println("O troco é: " + mcc.calculateTotalMoneyChange());
+        Double v = mcc.calculateTotalMoneyChange();
+        System.out.println("O troco é: " + v);
+        if (v == 0) {
+            return;
+        }
 
         System.out.println("As notas disponíveis para troco são: " + mcc.returnNoteList());
         System.out.println(mcc.returnTotalNoteChange());
