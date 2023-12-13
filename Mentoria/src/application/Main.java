@@ -31,7 +31,7 @@ public class Main {
         }
 
         System.out.println("As notas disponíveis para troco são: " + mcc.returnNoteList());
-        System.out.println(mcc.returnTotalNoteChange());
+        mcc.returnTotalNoteChange();
 
         sc.close();
     }

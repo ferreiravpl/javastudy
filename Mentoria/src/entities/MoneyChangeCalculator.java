@@ -31,32 +31,31 @@ public class MoneyChangeCalculator extends Transactions {
     }
 
     //Método para calcular o troco em cédulas
-    public double returnTotalNoteChange () {
+    public void returnTotalNoteChange () {
         Collections.sort(noteList, Collections.reverseOrder());
         returnTotalNoteChange = calculateTotalMoneyChange();
         for (int i = 0; i < noteList.size(); i++) {
             double validateCalculateTotalMoneyChange = calculateTotalMoneyChange();
                 if (validateCalculateTotalMoneyChange == 0) {
                     break;
-            }
-            Double newValueNoteChange = returnTotalNoteChange / noteList.get(i);
-            Integer noteQuantityPerValue = (int) Math.floor(newValueNoteChange);
+                }
+            double newValueNoteChange = returnTotalNoteChange / noteList.get(i);
+            int noteQuantityPerValue = (int) Math.floor(newValueNoteChange);
                 if (noteQuantityPerValue > 0) {
-                    Double alreadyPaidAmount = noteQuantityPerValue * noteList.get(i);
+                    double alreadyPaidAmount = noteQuantityPerValue * noteList.get(i);
                     returnTotalNoteChange -= alreadyPaidAmount;
                     System.out.println("O seu troco contém " + noteQuantityPerValue + " notas de " + noteList.get(i));
             }
         }
-        return 0.0;
     }
 
     //Calculando o valor total do troco (sem separação por cédulas)
     public Double calculateTotalMoneyChange() {
         if (Transactions.getPaidAmount() < Transactions.getCost()) {
             System.out.println("Dinheiro insuficiente!");
+            return 0.0;
         } else {
             return Transactions.getPaidAmount() - Transactions.getCost();
         }
-        return 0.0;
     }
 }
