@@ -6,8 +6,7 @@ import java.util.List;
 
 public class MoneyChangeCalculator extends Transactions {
 
-    Double returnTotalNoteChange;
-
+    double returnTotalNoteChange;
     List<Double> noteList = new ArrayList();
 
     //Método para inserir as cédulas na lista
@@ -31,16 +30,12 @@ public class MoneyChangeCalculator extends Transactions {
         return noteList;
     }
 
-    //Ajustar variável returnTotalNoteChange pq tá pegando sempre o troco total e não o resto das próximas divisões;
-    //Criar nova variável pra armazenar o resto das divisões (validar se faz sentido criar um método pra incrementar ela ou se no próprio for);
-
-
     //Método para calcular o troco em cédulas
     public double returnTotalNoteChange () {
         Collections.sort(noteList, Collections.reverseOrder());
         returnTotalNoteChange = calculateTotalMoneyChange();
         for (int i = 0; i < noteList.size(); i++) {
-            Double validateCalculateTotalMoneyChange = calculateTotalMoneyChange();
+            double validateCalculateTotalMoneyChange = calculateTotalMoneyChange();
                 if (validateCalculateTotalMoneyChange == 0) {
                     break;
             }
