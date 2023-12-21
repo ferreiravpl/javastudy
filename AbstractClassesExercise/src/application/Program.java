@@ -44,6 +44,8 @@ public class Program {
         }
 
         for (Person person : taxPayers) {
+
+            System.out.println("TAXES PAID:");
             System.out.println(person);
 
         }
