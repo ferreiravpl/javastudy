@@ -35,4 +35,13 @@ public class PhysicalPerson extends Person {
 
     }
 
+    @Override
+    public String toString() {
+        return "PhysicalPerson{" +
+                "name='" + name + '\'' +
+                ", anualIncome=" + anualIncome +
+                ", tax=" + tax +
+                '}';
+    }
+
 }

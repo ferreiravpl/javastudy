@@ -41,4 +41,6 @@ public abstract class Person {
 
     public abstract double taxesCalculator();
 
+    public abstract String toString();
+
 }

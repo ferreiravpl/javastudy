@@ -31,4 +31,14 @@ public class LegalPerson extends Person {
             return anualIncome *= tax;
         }
     }
+
+    @Override
+    public String toString() {
+        return "LegalPerson{" +
+                "name='" + name + '\'' +
+                ", anualIncome=" + anualIncome +
+                ", tax=" + tax +
+                '}';
+    }
+
 }
