@@ -23,6 +23,7 @@ public class Main {
         System.out.print("Qual o valor do pagamento em dinheiro? ");
         Double paidAmount = sc.nextDouble();
         tc.setPaidAmount(paidAmount);
+        teste
 
         Double v = mcc.calculateTotalMoneyChange();
         System.out.println("O troco é: " + v);
