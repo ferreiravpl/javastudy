@@ -16,13 +16,13 @@ public class Program {
 
         System.out.print("Enter the number of tax payers: ");
         Integer taxPayersQty = sc.nextInt();
-        sc.nextLine();
 
-        for (int i = 1; i < taxPayersQty; i++) {
+        for (int i = 1; i <= taxPayersQty; i++) {
             System.out.println("Tax payer #" + i + " data:");
-            System.out.print("Individual or company (i/c)?");
+            System.out.print("Individual or company (i/c)? ");
             char personType = sc.next().charAt(0);
             if (personType == 'c') {
+                sc.nextLine();
                 System.out.print("Name: ");
                 String name = sc.nextLine();
                 System.out.print("Anual income: ");
@@ -32,11 +32,12 @@ public class Program {
                 sc.nextLine();
                 taxPayers.add(new LegalPerson(name, anualIncome, employeeQty));
             } else {
+                sc.nextLine();
                 System.out.print("Name: ");
                 String name = sc.nextLine();
                 System.out.print("Anual income: ");
                 Double anualIncome = sc.nextDouble();
-                System.out.print("Number of employees: ");
+                System.out.print("Health expenses: ");
                 Double healthExpenses = sc.nextDouble();
                 taxPayers.add(new PhysicalPerson(name, anualIncome, healthExpenses));
             }
@@ -44,6 +45,7 @@ public class Program {
 
         for (Person person : taxPayers) {
             System.out.println(person);
+
         }
         sc.close();
     }
