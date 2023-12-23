@@ -22,23 +22,21 @@ public class LegalPerson extends Person {
     }
 
     @Override
-    public double taxesCalculator() {
-        tax = 0.16;
+    public void taxesCalculator() {
+        setTax(0.16);
         if (getEmployeeQuantity() >= 10) {
-            tax = 0.14;
-            return anualIncome *= tax;
+            setTax(0.14);
+            taxesPerAnualIncome *= getTax();
         } else {
-            return anualIncome *= tax;
+            taxesPerAnualIncome *= getTax();
         }
     }
 
     @Override
     public String toString() {
-        return "LegalPerson{" +
-                "name='" + name + '\'' +
-                ", anualIncome=" + anualIncome +
-                ", tax=" + tax +
-                '}';
+        return getName()
+                + ": $ "
+                + getTaxesPerAnualIncome();
     }
 
 }

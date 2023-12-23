@@ -22,26 +22,25 @@ public class PhysicalPerson extends Person {
     }
 
     @Override
-    public double taxesCalculator() {
+    public void taxesCalculator() {
 
-        if (getAnualIncome() <= 20000) {
-            tax = 0.15;
-            return anualIncome = anualIncome * tax - getHealthExpenses() / 2;
+        if (getTaxesPerAnualIncome() <= 20000) {
+            setTax(0.15);
+            taxesPerAnualIncome = getTaxesPerAnualIncome() * getTax() - getHealthExpenses() / 2;
 
         } else {
-            tax = 0.25;
-            return anualIncome = anualIncome * tax - getHealthExpenses() / 2;
+            setTax(0.25);
+            taxesPerAnualIncome = getTaxesPerAnualIncome() * getTax() - getHealthExpenses() / 2;
         }
 
     }
 
     @Override
     public String toString() {
-        return "PhysicalPerson{" +
-                "name='" + name + '\'' +
-                ", anualIncome=" + anualIncome +
-                ", tax=" + tax +
-                '}';
+        return getName()
+                + ": $ "
+                + getTaxesPerAnualIncome();
+
     }
 
 }

@@ -2,17 +2,17 @@ package entities;
 
 public abstract class Person {
 
-    String name;
-    Double anualIncome;
-    Double tax;
+    private String name;
+    Double taxesPerAnualIncome;
+    private Double tax;
 
     public Person() {
 
     }
 
-    public Person(String name, Double anualIncome) {
+    public Person(String name, Double taxesPerAnualIncome) {
         this.name = name;
-        this.anualIncome = anualIncome;
+        this.taxesPerAnualIncome = taxesPerAnualIncome;
     }
 
     public String getName() {
@@ -23,12 +23,12 @@ public abstract class Person {
         this.name = name;
     }
 
-    public Double getAnualIncome() {
-        return anualIncome;
+    public Double getTaxesPerAnualIncome() {
+        return taxesPerAnualIncome;
     }
 
-    public void setAnualIncome(Double anualIncome) {
-        this.anualIncome = anualIncome;
+    public void setTaxesPerAnualIncome(Double taxesPerAnualIncome) {
+        this.taxesPerAnualIncome = taxesPerAnualIncome;
     }
 
     public Double getTax() {
@@ -39,7 +39,8 @@ public abstract class Person {
         this.tax = tax;
     }
 
-    public abstract double taxesCalculator();
+    public void taxesCalculator() {
+    }
 
     public abstract String toString();
 
