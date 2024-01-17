@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Comparator;
+
 public class Employee {
 
     private String name;
@@ -34,14 +36,5 @@ public class Employee {
 
     public void setSalary(Double salary) {
         this.salary = salary;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", salary=" + salary +
-                '}';
     }
 }
