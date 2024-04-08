@@ -31,7 +31,19 @@ public class ToDoListService {
         toDoListRepository.deleteById(id);
     }
 
-    public void update(Long id, ToDoList todo) {
-        toDoListRepository.save(todo);
+    public ToDoList update(Long id, ToDoList todo) {
+        try {
+            ToDoList currentToDoId = toDoListRepository.getReferenceById(id);
+            updateToDo(currentToDoId, todo);
+            return toDoListRepository.save(currentToDoId);
+        } catch (Exception e) {
+            e.getMessage();
+        } return toDoListRepository.getReferenceById(id);
     }
+
+    public void updateToDo (ToDoList currentToDo, ToDoList newToDo) {
+        currentToDo.setDescription(newToDo.getDescription());
+        currentToDo.setMoment(newToDo.getMoment());
+    }
+
 }
