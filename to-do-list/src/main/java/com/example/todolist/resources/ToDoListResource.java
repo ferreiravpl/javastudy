@@ -3,6 +3,7 @@ package com.example.todolist.resources;
 
 import com.example.todolist.entities.ToDoList;
 import com.example.todolist.services.ToDoListService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -36,10 +37,11 @@ public class ToDoListResource {
         return ResponseEntity.ok().body(todo);
     }
 
+    @JsonFormat
     @PostMapping
     public ResponseEntity<?> createToDo(@RequestBody ToDoList todo) {
         todo = toDoListService.insert(todo);
-        return new ResponseEntity<>("Created ToDo: " + todo, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(todo);
     }
 
     @DeleteMapping("/{id}")
@@ -49,13 +51,13 @@ public class ToDoListResource {
         } catch (EmptyResultDataAccessException e) {
             e.getMessage();
         }
-        return new ResponseEntity<>("ToDo deleted", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateTodo(@PathVariable Long id, @RequestBody ToDoList todo) {
         toDoListService.update(id, todo);
-        return new ResponseEntity<>("ToDo updated: " + todo, HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(todo);
     }
 
 }
