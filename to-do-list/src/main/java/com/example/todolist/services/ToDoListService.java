@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 @Service
 public class ToDoListService {
@@ -18,9 +18,9 @@ public class ToDoListService {
         return toDoListRepository.findAll();
     }
 
-    public List<ToDoList> findById(Long id) {
-        Optional<ToDoList> idFound = toDoListRepository.findById(id);
-        return (List<ToDoList>) idFound.get();
+    public ToDoList findById(Long id) {
+        return toDoListRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("ToDo com o ID " + id + " não encontrado."));
     }
 
     public ToDoList insert(ToDoList obj) {
@@ -28,22 +28,21 @@ public class ToDoListService {
     }
 
     public void deleteById(Long id) {
+        if (!toDoListRepository.existsById(id)) {
+            throw new NoSuchElementException("ToDo com o ID " + id + " não encontrado.");
+        }
         toDoListRepository.deleteById(id);
     }
 
-    public ToDoList update(Long id, ToDoList todo) {
-        try {
-            ToDoList currentToDoId = toDoListRepository.getReferenceById(id);
-            updateToDo(currentToDoId, todo);
-            return toDoListRepository.save(currentToDoId);
-        } catch (Exception e) {
-            e.getMessage();
-        } return toDoListRepository.getReferenceById(id);
+    public ToDoList update(Long id, ToDoList updatedToDo) {
+        ToDoList currentToDo = findById(id);
+        updateToDoDetails(currentToDo, updatedToDo);
+        return toDoListRepository.save(currentToDo);
     }
 
-    public void updateToDo (ToDoList currentToDo, ToDoList newToDo) {
-        currentToDo.setDescription(newToDo.getDescription());
-        currentToDo.setMoment(newToDo.getMoment());
+    public void updateToDoDetails(ToDoList currentToDo, ToDoList updatedToDo) {
+        currentToDo.setDescription(updatedToDo.getDescription());
+        currentToDo.setMoment(updatedToDo.getMoment());
     }
 
 }
