@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.Instant;
+import java.util.Date;
 
 @ToString
 @Getter
@@ -24,7 +24,13 @@ public class ToDoList {
     @JsonProperty("description")
     private String description;
 
-    @JsonProperty("moment")
-    private Instant moment;
+    @JsonProperty("initialDate")
+    private Date initialDate;
+
+    @JsonProperty("finalDate")
+    private Date finalDate;
+
+    @JsonProperty("isDone")
+    private Boolean isDone;
 
 }
