@@ -42,7 +42,9 @@ public class ToDoListService {
 
     public void updateToDoDetails(ToDoList currentToDo, ToDoList updatedToDo) {
         currentToDo.setDescription(updatedToDo.getDescription());
-        currentToDo.setMoment(updatedToDo.getMoment());
+        currentToDo.setInitialDate(updatedToDo.getInitialDate());
+        currentToDo.setFinalDate(updatedToDo.getFinalDate());
+        currentToDo.setIsDone(updatedToDo.getIsDone());
     }
 
 }
