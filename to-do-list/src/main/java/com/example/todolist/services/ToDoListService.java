@@ -3,6 +3,7 @@ package com.example.todolist.services;
 import com.example.todolist.entities.ToDoList;
 import com.example.todolist.repositories.ToDoListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
