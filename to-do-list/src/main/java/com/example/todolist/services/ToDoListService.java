@@ -25,7 +25,11 @@ public class ToDoListService {
     }
 
     public ToDoList insert(ToDoList obj) {
-        return toDoListRepository.save(obj);
+        try {
+            toDoListRepository.save(obj);
+        } catch (HttpMessageNotReadableException e) {
+            throw new RuntimeException(e);
+        } return obj;
     }
 
     public void deleteById(Long id) {

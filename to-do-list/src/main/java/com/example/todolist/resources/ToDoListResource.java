@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,11 +35,6 @@ public class ToDoListResource {
     @JsonFormat
     @PostMapping
     public ResponseEntity<?> createToDo(@RequestBody ToDoList todo) {
-        try {
-            todo = toDoListService.insert(todo);
-        } catch (HttpMessageNotReadableException e) {
-            throw new RuntimeException(e);
-        }
         return ResponseEntity.status(HttpStatus.CREATED).body(todo);
     }
 
