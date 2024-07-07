@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @ToString
@@ -27,8 +28,11 @@ public class ToDoList {
     @JsonProperty("initialDate")
     private Date initialDate;
 
-    @JsonProperty("finalDate")
-    private Date finalDate;
+    @JsonProperty("estimatedDate")
+    private Date estimatedDate;
+
+    @JsonProperty("concludedDate")
+    private LocalDateTime concludedDate;
 
     @JsonProperty("isDone")
     private Boolean isDone;
