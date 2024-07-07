@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class ToDoListService {
@@ -26,6 +29,8 @@ public class ToDoListService {
 
     public ToDoList insert(ToDoList obj) {
         try {
+            validateNotNullDescription(obj);
+            validateDates(obj);
             return toDoListRepository.save(obj);
         } catch (HttpMessageNotReadableException e) {
             throw new RuntimeException(e);
@@ -48,8 +53,29 @@ public class ToDoListService {
     public void updateToDoDetails(ToDoList currentToDo, ToDoList updatedToDo) {
         currentToDo.setDescription(updatedToDo.getDescription());
         currentToDo.setInitialDate(updatedToDo.getInitialDate());
-        currentToDo.setFinalDate(updatedToDo.getFinalDate());
+        currentToDo.setEstimatedDate(updatedToDo.getEstimatedDate());
         currentToDo.setIsDone(updatedToDo.getIsDone());
+        setConcludedTodoDate(currentToDo);
+    }
+
+    public void validateDates (ToDoList todo) {
+        Date estimatedDate = todo.getEstimatedDate();
+        Date initialDate = todo.getInitialDate();
+
+        if (estimatedDate.before(initialDate)) {
+            throw new RuntimeException("Data final " + estimatedDate + " anterior à data inicial " + initialDate );
+        }
+    }
+
+    public void validateNotNullDescription (ToDoList todoDescription) {
+        Optional.ofNullable(todoDescription.getDescription()).orElseThrow(() -> new RuntimeException("Descrição não pode ser vazia"));
+    }
+
+    public void setConcludedTodoDate (ToDoList todo) {
+        if (todo.getIsDone().equals(true)) {
+            todo.setConcludedDate(LocalDateTime.now());
+        }
     }
 
 }
+
