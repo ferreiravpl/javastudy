@@ -1,7 +1,6 @@
-package com.example.todolist.resources.exceptions;
+package com.example.todolist.services.exceptions;
 
 
-import com.fasterxml.jackson.core.JsonParseException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ import java.time.Instant;
 import java.util.NoSuchElementException;
 
 @ControllerAdvice
-public class ResourceExceptionHandler {
+public class ServiceExceptionHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<StandardError> elementNotFound(NoSuchElementException e, HttpServletRequest request) {

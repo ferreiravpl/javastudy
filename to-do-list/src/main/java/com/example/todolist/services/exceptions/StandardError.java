@@ -1,4 +1,4 @@
-package com.example.todolist.resources.exceptions;
+package com.example.todolist.services.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
