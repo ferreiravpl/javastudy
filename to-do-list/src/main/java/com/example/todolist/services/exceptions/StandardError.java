@@ -1,6 +1,5 @@
 package com.example.todolist.services.exceptions;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ import java.time.Instant;
 @NoArgsConstructor
 public class StandardError implements Serializable {
 
-    private Instant timestamp;
+    private String timestamp;
     private Integer status;
     private String error;
     private String message;
